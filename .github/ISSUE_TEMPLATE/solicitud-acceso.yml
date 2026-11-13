@@ -1,0 +1,42 @@
+name: Solicitud de acceso
+description: Pedir acceso a una versión privada de netEspNow.
+title: "[Acceso] netespnow"
+labels: ["solicitud-acceso"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Este formulario pide acceso a una versión privada de **netEspNow**.
+        La primera versión (`netEspNow v1.1`) es pública y gratuita.
+  - type: dropdown
+    id: version
+    attributes:
+      label: Versión solicitada
+      options:
+        - "netEspNow v1.1-fix1"
+        - "netEspNow v1.2"
+        - "netEspNow v1.3"
+        - "netEspNow v1.4"
+    validations:
+      required: true
+  - type: input
+    id: uso
+    attributes:
+      label: Tipo de uso
+      description: Personal, educativo, comercial, interno, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto
+      description: Contame qué querés construir, para qué y por qué necesitás esta versión.
+    validations:
+      required: true
+  - type: checkboxes
+    id: condiciones
+    attributes:
+      label: Condiciones
+      options:
+        - label: Entiendo que esta versión es privada, que no se redistribuye y que el acceso se otorga por autorización escrita.
+          required: true
