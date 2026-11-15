@@ -156,6 +156,39 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 .rich .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
 .rich .card-grid .card{margin:0}
 
+
+.rich h3{margin:26px 0 8px}
+.rich p{margin:0 0 14px;color:var(--muted);line-height:1.7}
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(11,34,43,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm,#D6A86A)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(11,34,43,.55)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;font-weight:600}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-align:right}
+.rating-note{grid-column:2/-1;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";display:inline-block;width:18px;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::before{content:"–"}
+.faq p{margin:10px 0 0 18px;font-size:14px;color:var(--muted)}
+@media(max-width:720px){
+  .fail-grid{grid-template-columns:1fr}
+  .rating-head{flex-direction:column;align-items:flex-start}
+  .rating-row{grid-template-columns:120px 1fr 44px}
+}
+
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
 </head>
@@ -188,15 +221,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">5</div><div class="stat-label">versiones</div></div><div class="stat"><div class="stat-num">22</div><div class="stat-label">nodos diseñados</div></div><div class="stat"><div class="stat-num">3</div><div class="stat-label">niveles</div></div><div class="stat"><div class="stat-num">1.4</div><div class="stat-label">sin firmware</div></div></div></section>
 
-<section class="section" id="proyecto"><div class="wrap">
-  <div class="section-head reveal"><div class="kicker">01 — El proyecto</div><h2>Qué resuelve</h2><p class="section-sub">Evolución de una red ESP-NOW: primero estrella, después rutas explícitas, luego descubrimiento y reparación de ramas, y finalmente un diseño fractal de tres niveles. La v1.4 es un diseño documentado, no firmware terminado.</p></div>
-  <div class="two">
-    <div class="card reveal"><span class="tag">Problema</span><h3>El punto de partida</h3><p>ESP-NOW funciona en estrella, pero al crecer la red el nodo que queda lejos del bridge pierde el enlace y no hay ruta alternativa.</p></div>
-    <div class="card reveal"><span class="tag">Solución</span><h3>La propuesta</h3><p>Rutear por nodos intermedios, descubrir el gateway al arrancar y reparar ramas cuando un enlace cae. La v1.4 documenta el diseño antes de codificarlo.</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>netespnow reúne cinco versiones de una red de sensores sobre ESP-NOW, desde una estrella con cinco nodos hasta el diseño de un árbol fractal de tres niveles y veintidós dispositivos. La última versión especifica cómo llevar la ruta dentro del mensaje, cómo descubrir el gateway de cada célula y cómo reparar una rama sin que los nodos mantengan tablas de topología.</p><p>Está pensado para quien despliega ESP8266 en interiores o recintos donde un solo punto de acceso no alcanza y no quiere depender de WiFi ni de un broker. Importa porque documenta el techo de la estrella plana —diecinueve endpoints y un gateway— y porque separa con honestidad lo diseñado de lo implementado: la v1.4 describe la arquitectura, pero su firmware aún no existe.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>netEspNow v1.1</h3><span class="count">15 archivos</span></div>
@@ -220,23 +245,23 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
   <a href="https://github.com/jmadasme/netespnow/tree/main/versions/netEspNow%20v1.4" target="_blank" rel="noopener">Ver carpeta <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </article></div>
 </div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">01 — La idea</div><h2>Una red que crece sin romper la RAM</h2><p class="section-sub">En ESP-NOW cada nodo necesita una tabla de pares. Si todos hablan con todos, la memoria explota. La solución es una topología explícita.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — La idea</div><h2>Una red que crece sin romper la RAM</h2><p class="section-sub">En ESP-NOW cada nodo necesita una tabla de pares. Si todos hablan con todos, la memoria explota. La solución es una topología explícita.</p></div><div class="rich reveal"><div class="card-grid">
 <div class="card"><h3>El problema</h3><div><div></div><p>Una malla completa de 22 nodos obliga a cada ESP8266 a recordar 21 pares, con buffers y direcciones MAC. La RAM se vuelve el límite antes que la radio. Además, una ruta rota deja nodos aislados sin un mecanismo claro de recuperación.</p></div></div>
 <div class="card"><h3>La solución</h3><div><div></div><p>Tres niveles con rutas explícitas como 1:1:3. Cada nodo solo conoce a su padre y a sus hijos directos. Los beacons cada 2 s mantienen viva la topología y disparan la auto-reparación cuando un enlace desaparece.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">02 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">La red se descubre y se repara sola, sin un coordinador central que lo sepa todo.</p></div><div class="rich reveal"><div class="timeline">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">La red se descubre y se repara sola, sin un coordinador central que lo sepa todo.</p></div><div class="rich reveal"><div class="timeline">
 <div class="step"><div class="step-n">01</div><h4>Arranque y beacon</h4><div><p>Cada nodo emite un beacon cada 2 segundos con su identificador y su nivel.</p></div></div>
 <div class="step"><div class="step-n">02</div><h4>Descubrimiento de padre</h4><div><p>Un nodo nuevo escucha beacons, elige un padre disponible y se registra con una ruta explícita.</p></div></div>
 <div class="step"><div class="step-n">03</div><h4>Ruta por niveles</h4><div><p>El mensaje viaja de hijo a padre hasta el nodo raíz. La ruta 1:1:3 identifica el camino sin tablas globales.</p></div></div>
 <div class="step"><div class="step-n">04</div><h4>Auto-reparación</h4><div><p>Si el padre deja de responder, el nodo promueve otro candidato y reconstruye su rama.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — Bajo el capó</div><h2>Fractal por diseño</h2><p class="section-sub">La misma regla se repite en cada nivel: un padre, varios hijos, rutas que no se confunden.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Topología fractal de tres niveles para 22 nodos ESP8266" loading="lazy"><figcaption>Cada nivel repite el patrón; la RAM de un nodo no depende del total de la red.</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Bajo el capó</div><h2>Fractal por diseño</h2><p class="section-sub">La misma regla se repite en cada nivel: un padre, varios hijos, rutas que no se confunden.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Topología fractal de tres niveles para 22 nodos ESP8266" loading="lazy"><figcaption>Cada nivel repite el patrón; la RAM de un nodo no depende del total de la red.</figcaption></figure>
 <div class="card-grid">
 <div class="card"><h3>Ruta explícita</h3><div><p>El identificador 1:1:3 dice nivel y posición. No hace falta una tabla de enrutamiento global.</p></div></div>
 <div class="card"><h3>Cifrado por nivel</h3><div><p>Cada nivel usa su propia PMK y ECC para el intercambio. Un nodo comprometido no abre toda la red.</p></div></div>
 <div class="card"><h3>Beacons como latido</h3><div><p>Dos segundos sin beacon es una señal de vida perdida. La recuperación es local, no central.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">La elegancia está en lo que cada nodo no necesita saber.</p></div><div class="rich reveal"><div class="features">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">La elegancia está en lo que cada nodo no necesita saber.</p></div><div class="rich reveal"><div class="features">
 <div class="feature"><h3>Topología fractal</h3><div><p>El mismo patrón de padre-hijos se repite en los tres niveles.</p></div></div>
 <div class="feature"><h3>Auto-reparación</h3><div><p>La pérdida de un padre dispara la elección de un reemplazo en la rama afectada.</p></div></div>
 <div class="feature"><h3>PMK por nivel</h3><div><p>Claves distintas por nivel y ECC para el intercambio inicial.</p></div></div>
@@ -244,21 +269,20 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <div class="feature"><h3>Beacons de 2 s</h3><div><p>El latido que mantiene la topología y detecta enlaces caídos.</p></div></div>
 <div class="feature"><h3>Ruta legible</h3><div><p>Identificadores como 1:1:3 hacen que el camino sea inspeccionable sin herramientas externas.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/routing.svg" alt="netEspNow — routing" loading="lazy"><figcaption>Routing</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/routing.svg" alt="netEspNow — routing" loading="lazy"><figcaption>Routing</figcaption></figure>
 <figure><img src="assets/rich/security.svg" alt="netEspNow — security" loading="lazy"><figcaption>Security</figcaption></figure></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">C++ sobre Arduino core para ESP8266, ESP-NOW como transporte y un esquema de rutas y claves propio. El diseño está completo; la implementación es el siguiente paso.</p></div><div class="rich reveal"><p>ESP8266 ESP-NOW C++ Arduino ECC PMK PlatformIO Este repositorio documenta el diseño y el plan de implementación. No se presenta como firmware terminado.</p>
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">08 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">C++ sobre Arduino core para ESP8266, ESP-NOW como transporte y un esquema de rutas y claves propio. El diseño está completo; la implementación es el siguiente paso.</p></div><div class="rich reveal"><p>ESP8266 ESP-NOW C++ Arduino ECC PMK PlatformIO Este repositorio documenta el diseño y el plan de implementación. No se presenta como firmware terminado.</p>
 <p>netEspNow · estructura</p>
 <pre><span>$</span> git clone https://github.com/wanderc137/netEspNow-v1.4
 <span>$</span> cd netEspNow-v1.4
 <span># Leer docs/developer.md: diseño, rutas y plan de implementación</span>
 <span># La implementación se organiza en src/ y tools/</span></pre></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">09 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
 <a class="card" href=""><h3>La guía completa</h3><p>Arquitectura, topología, rutas, beacons y estado del proyecto.</p></a>
 <a class="card" href=""><h3>Manual de operación</h3><p>Parámetros de red, cifrado, diagnóstico y límites.</p></a>
 <a class="card" href=""><h3>Guía de código</h3><p>Estructura de nodos, rutas, beacons y plan de implementación.</p></a>
 <a class="card" href=""><h3>Referencias</h3><p>ESP-NOW, ESP8266, ECC y documentación de Arduino.</p></a>
-</div></div></div></section>
-<section class="cta"><div class="wrap"><div class="cta-box reveal">
+</div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Lo que no funcionó</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Las primeras versiones existen para que estos errores no se repitan: cada una dejó una decisión de diseño verificable.</p></div><div class="fail-grid reveal"><div class="fail"><div class="v">netEspNow v1.3</div><h3>Estrella plana sin ruta alternativa</h3><p>La v1.3 funcionaba con siete ESP8266 y un RTT de 1385 ms, pero todos los nodos debían alcanzar el único gateway y el límite de peers fijaba diecinueve endpoints. Añadir un nivel de anidación no era posible sin una tabla de rutas. La v1.4 reemplazó la estrella por células con ruta explícita.</p></div><div class="fail"><div class="v">netEspNow v1.3</div><h3>Cifrado ECC débil y tramo de nodos en claro</h3><p>La auditoría encontró un ECDH simulado con XOR de claves, un digest también XOR en lugar de SHA-256 y el mismo par hardcodeado en ambos extremos; además, gateway y nodos hablaban en texto plano. La v1.4 añadió PMK por nivel y dejó la deuda del ECC documentada para v1.5.</p></div><div class="fail"><div class="v">netEspNow v1.1</div><h3>Primera red sin cifrado</h3><p>La v1.1 conectaba cinco NodeMCU y un bridge USB en estrella, sin cifrado ni autenticación. Cualquier dispositivo en el canal podía escuchar o inyectar tramas con el node_id correcto. La v1.2 introdujo la puerta de enlace con cifrado asimétrico, aunque su implementación posterior se reveló débil.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Ficha de evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios con la misma escala en todo el catálogo, para comparar sin marketing.</p></div><div class="rating-head reveal"><div class="rating-avg">3.0<small>/5</small></div><div><strong>Madurez global</strong><p>El diseño está bien argumentado y auditado, pero todavía no tiene implementación; sirve para estudiar el problema y comparar alternativas, no para desplegar una red de sensores.</p></div></div><div class="rating reveal"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><i style="width:40%"></i></div><div class="rating-score">2/5</div><div class="rating-note">La v1.4 está especificada, pero los cuatro firmwares no existen y ningún caso de prueba se ejecutó.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><i style="width:20%"></i></div><div class="rating-score">1/5</div><div class="rating-note">No hay firmware ni controlador; solo carpetas vacías, documentación y un dashboard estático sin conexión.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">README, BITACORA, datasheet y developer cubren topología, latencia, RAM, seguridad y decisiones descartadas.</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Declara que la v1.4 no es firmware y que el ECC heredado es débil; no presenta el diseño como terminado.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><i style="width:80%"></i></div><div class="rating-score">4/5</div><div class="rating-note">El análisis del techo de la estrella y el rutado en el mensaje tienen valor docente y de arquitectura.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><i style="width:20%"></i></div><div class="rating-score">1/5</div><div class="rating-note">Sin firmware no hay nada que flashear; el plan de cuatro fases sigue pendiente.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Preguntas típicas</div><h2>Lo que suelen preguntar</h2></div><div class="faq reveal"><details><summary>¿Cuál es la versión estable?</summary><p>v1.1-fix1 para una estrella; v1.3 si necesitás reparación de ramas.</p></details><details><summary>¿v1.4 funciona?</summary><p>No como firmware. Es un diseño de tres niveles para 22 nodos, documentado y no implementado.</p></details><details><summary>¿Cuántos nodos soporta?</summary><p>La v1.4 está diseñada para 22; las anteriores se probaron con menos.</p></details><details><summary>¿Necesito un router?</summary><p>No. ESP-NOW es punto a punto; el bridge puede exponer los datos después.</p></details><details><summary>¿Por qué hay espacios en los nombres?</summary><p>Son los nombres originales de las carpetas. Se conservan para mantener la trazabilidad.</p></details></div></div></section><section class="cta"><div class="wrap"><div class="cta-box reveal">
   <div class="kicker">Siguiente paso</div><h2>¿Te animás?</h2>
   <p>Usá esta familia como base para netespnow. Está documentada para que puedas entenderla, ejecutarla y continuarla sin adivinar.</p>
   <div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="https://github.com/jmadasme/netespnow" target="_blank" rel="noopener">Abrir el repositorio <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="/iot/">Ver más de IoT</a></div>

@@ -37,6 +37,60 @@ ls
 
 Los nombres de carpeta conservan espacios. v1.4 es documentación de diseño; no hay firmware para cargar.
 
+<!-- ficha -->
+## Ficha de evaluación
+
+**Madurez global: 3.0/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 2/5 | La v1.4 está especificada, pero los cuatro firmwares no existen y ningún caso de prueba se ejecutó. |
+| Reproducibilidad | 1/5 | No hay firmware ni controlador; solo carpetas vacías, documentación y un dashboard estático sin conexión. |
+| Documentación | 5/5 | README, BITACORA, datasheet y developer cubren topología, latencia, RAM, seguridad y decisiones descartadas. |
+| Honestidad de límites | 5/5 | Declara que la v1.4 no es firmware y que el ECC heredado es débil; no presenta el diseño como terminado. |
+| Valor demostrativo | 4/5 | El análisis del techo de la estrella y el rutado en el mensaje tienen valor docente y de arquitectura. |
+| Facilidad de despliegue | 1/5 | Sin firmware no hay nada que flashear; el plan de cuatro fases sigue pendiente. |
+
+El diseño está bien argumentado y auditado, pero todavía no tiene implementación; sirve para estudiar el problema y comparar alternativas, no para desplegar una red de sensores.
+
+## Lo que no funcionó
+
+### netEspNow v1.3 — Estrella plana sin ruta alternativa
+
+La v1.3 funcionaba con siete ESP8266 y un RTT de 1385 ms, pero todos los nodos debían alcanzar el único gateway y el límite de peers fijaba diecinueve endpoints. Añadir un nivel de anidación no era posible sin una tabla de rutas. La v1.4 reemplazó la estrella por células con ruta explícita.
+
+### netEspNow v1.3 — Cifrado ECC débil y tramo de nodos en claro
+
+La auditoría encontró un ECDH simulado con XOR de claves, un digest también XOR en lugar de SHA-256 y el mismo par hardcodeado en ambos extremos; además, gateway y nodos hablaban en texto plano. La v1.4 añadió PMK por nivel y dejó la deuda del ECC documentada para v1.5.
+
+### netEspNow v1.1 — Primera red sin cifrado
+
+La v1.1 conectaba cinco NodeMCU y un bridge USB en estrella, sin cifrado ni autenticación. Cualquier dispositivo en el canal podía escuchar o inyectar tramas con el node_id correcto. La v1.2 introdujo la puerta de enlace con cifrado asimétrico, aunque su implementación posterior se reveló débil.
+
+## Preguntas típicas
+
+**¿Cuál es la versión estable?**
+
+v1.1-fix1 para una estrella; v1.3 si necesitás reparación de ramas.
+
+**¿v1.4 funciona?**
+
+No como firmware. Es un diseño de tres niveles para 22 nodos, documentado y no implementado.
+
+**¿Cuántos nodos soporta?**
+
+La v1.4 está diseñada para 22; las anteriores se probaron con menos.
+
+**¿Necesito un router?**
+
+No. ESP-NOW es punto a punto; el bridge puede exponer los datos después.
+
+**¿Por qué hay espacios en los nombres?**
+
+Son los nombres originales de las carpetas. Se conservan para mantener la trazabilidad.
+
+<!-- /ficha -->
+
 ## Documentación
 
 - [`docs/datasheet.md`](docs/datasheet.md) — instalación, operación y límites.
@@ -44,9 +98,9 @@ Los nombres de carpeta conservan espacios. v1.4 es documentación de diseño; no
 - [`docs/REFERENCES.md`](docs/REFERENCES.md) — estándares, librerías y fuentes.
 - [`docs/index.html`](docs/index.html) — página del proyecto (GitHub Pages).
 
-## Alcance y honestidad
+## El proyecto en detalle
 
-## netEspNow v1.4 — Red ESP-NOW fractal de 3 niveles
+### netEspNow v1.4 — Red ESP-NOW fractal de 3 niveles
 
 <p align="center">
   <img alt="Hardware" src="https://img.shields.io/badge/hardware-ESP8266-0b0e14?style=flat-square&labelColor=1a2130&color=6c8cd9">
